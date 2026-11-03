@@ -1,7 +1,7 @@
 {
 	"engine": "4.4.1-stable (official)",
-	"failed": 4,
-	"passed": 28,
+	"failed": 2,
+	"passed": 30,
 	"tests": [
 		{
 			"detail": "",
@@ -84,7 +84,7 @@
 			"pass": true
 		},
 		{
-			"detail": "0.0 km/h gear=1 rpm=8749 signed=-0.00 force=-5679.8",
+			"detail": "0.1 km/h gear=1 rpm=8748 signed=0.01 force=-5680.7",
 			"name": "Vehicle accelerates under real physics",
 			"pass": false
 		},
@@ -94,9 +94,9 @@
 			"pass": true
 		},
 		{
-			"detail": "-0.000 rad/s",
+			"detail": "-0.021 rad/s",
 			"name": "Right steering yaws the chassis right",
-			"pass": false
+			"pass": true
 		},
 		{
 			"detail": "0.0 -> 0.3",
@@ -114,9 +114,9 @@
 			"pass": true
 		},
 		{
-			"detail": "-0.00 m/s",
+			"detail": "-2.69 m/s",
 			"name": "Reverse moves the vehicle backwards",
-			"pass": false
+			"pass": true
 		},
 		{
 			"detail": "",

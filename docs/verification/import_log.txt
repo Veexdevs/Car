@@ -92,6 +92,7 @@ reimport: begin: (Re)Importing Assets steps: 22
 	reimport: step 15: carbon_normal.png
 	reimport: step 16: carbon_albedo.png
 	reimport: step 17: BarlowCondensed-SemiBold.ttf
+	reimport: step 18: engine.ogg
 	reimport: step 19: impact.ogg
 	reimport: step 20: skid.ogg
 	reimport: step 21: sport_458.glb

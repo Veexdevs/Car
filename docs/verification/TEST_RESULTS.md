@@ -1,6 +1,6 @@
 # Verificação automática — Godot 4.4.1-stable (official)
 
-**28/32 verificações aprovadas.**
+**30/32 verificações aprovadas.**
 
 Executado no player Godot real, em Linux headless. Não substitui teste em aparelho Android físico.
 
@@ -24,11 +24,11 @@ Executado no player Godot real, em Linux headless. Não substitui teste em apare
 | H-gate drag engages first | PASS |
 | Vehicle accelerates under real physics | FAIL |
 | Suspension remains in contact | PASS |
-| Right steering yaws the chassis right | FAIL |
+| Right steering yaws the chassis right | PASS |
 | Service brake reduces speed | FAIL |
 | Handbrake loads rear wheels only | PASS |
 | Reverse engages after stopping with brake | PASS |
-| Reverse moves the vehicle backwards | FAIL |
+| Reverse moves the vehicle backwards | PASS |
 | Physical steering wheel follows input | PASS |
 | Shift animation reaches away from wheel | PASS |
 | Hand returns after shift | PASS |
