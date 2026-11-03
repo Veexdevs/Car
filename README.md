@@ -62,7 +62,13 @@ Releases/     ZIP completo para download
 
 ### Verificação
 
-Os testes automatizados executam no player Godot real via GitHub Actions: importação, transmissão, multitoque, aceleração, frenagem, ré, freio de mão, animações, câmera e pausa. Evidências ficam em [docs/verification/TEST_RESULTS.md](docs/verification/TEST_RESULTS.md). A validação em celular Android físico ainda deve ser feita no aparelho alvo; este ambiente não possui um dispositivo Android conectado.
+**33/33 verificações automatizadas aprovadas no Godot 4.4.1-stable** via GitHub Actions: importação, transmissão, multitoque, aceleração, frenagem, ré, freio de mão, animações, câmera e pausa. Evidências ficam em [docs/verification/TEST_RESULTS.md](docs/verification/TEST_RESULTS.md). A validação em celular Android físico ainda deve ser feita no aparelho alvo; este ambiente não possui um dispositivo Android conectado.
+
+Capturas reais do projeto em execução:
+
+![Cockpit](docs/verification/cockpit.png)
+
+![Piloto robótico em primeira pessoa](docs/verification/pilot_body.png)
 
 ### Licenças
 
