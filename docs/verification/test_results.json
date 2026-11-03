@@ -1,7 +1,7 @@
 {
 	"engine": "4.4.1-stable (official)",
 	"failed": 2,
-	"passed": 29,
+	"passed": 30,
 	"tests": [
 		{
 			"detail": "",
@@ -84,7 +84,7 @@
 			"pass": true
 		},
 		{
-			"detail": "2.3 km/h",
+			"detail": "0.1 km/h",
 			"name": "Vehicle accelerates under real physics",
 			"pass": false
 		},
@@ -94,9 +94,14 @@
 			"pass": true
 		},
 		{
-			"detail": "2.3 -> 0.3",
-			"name": "Service brake reduces speed",
+			"detail": "-0.021 rad/s",
+			"name": "Right steering yaws the chassis right",
 			"pass": true
+		},
+		{
+			"detail": "0.0 -> 0.3",
+			"name": "Service brake reduces speed",
+			"pass": false
 		},
 		{
 			"detail": "",
@@ -109,9 +114,9 @@
 			"pass": true
 		},
 		{
-			"detail": "0.50 m/s",
+			"detail": "-2.69 m/s",
 			"name": "Reverse moves the vehicle backwards",
-			"pass": false
+			"pass": true
 		},
 		{
 			"detail": "",
