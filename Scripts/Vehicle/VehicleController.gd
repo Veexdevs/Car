@@ -65,12 +65,21 @@ func _attach_visuals() -> void:
 		for surface in range(mi.mesh.get_surface_count()):
 			var original := mi.get_active_material(surface)
 			var mat_name := original.resource_name.to_lower() if original else ""
+			var dark := _material("res://Assets/Materials/dark_metal.tres")
+			var joint := _material("res://Assets/Materials/joint.tres")
+			var titanium := _material("res://Assets/Materials/titanium.tres")
 			if mat_name.contains("body_color"):
 				mi.set_surface_override_material(surface, paint)
-			elif mat_name.contains("leather") and not mat_name.contains("steering"):
+			elif mat_name.contains("steering_leather") or mat_name.contains("leather") or mat_name.contains("carpet") or mat_name.contains("interior_light"):
 				mi.set_surface_override_material(surface, leather)
-			elif mat_name.contains("carbon"):
+			elif mat_name.contains("steering_carbon") or mat_name.contains("carbon"):
 				mi.set_surface_override_material(surface, carbon)
+			elif mat_name.contains("interior_dark") or mat_name.contains("plastic"):
+				mi.set_surface_override_material(surface, joint)
+			elif mat_name.contains("steering_centre") or mat_name.contains("metal_gray"):
+				mi.set_surface_override_material(surface, dark)
+			elif mat_name.contains("steering_metal") or mat_name.contains("chrome"):
+				mi.set_surface_override_material(surface, titanium)
 			elif mat_name.contains("glass") and not mat_name.contains("light"):
 				var glass := StandardMaterial3D.new()
 				glass.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA

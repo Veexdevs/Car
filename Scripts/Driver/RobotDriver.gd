@@ -35,7 +35,7 @@ var _carbon: StandardMaterial3D
 var _joint: StandardMaterial3D
 var _orange: StandardMaterial3D
 const HIP := Vector3(-0.346, 0.46, 0.40)
-const EYE := Vector3(0, 0.125, -0.035)
+const EYE := Vector3(0, 0.14, -0.01)
 
 func setup(vehicle: VehicleController) -> void:
 	car = vehicle

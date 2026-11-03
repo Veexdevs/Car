@@ -76,12 +76,12 @@ func control_rect(id: StringName) -> Rect2:
 	# Compact on 16:9; expand spacing on wider phones without stretching touch targets.
 	match id:
 		&"steer": return Rect2(m.x, h - 214, 320, 184)
-		&"gear": return Rect2(w - m.y - 514, h - 204, 184, 174)
+		&"gear": return Rect2(w - m.y - 500, h - 204, 174, 174)
 		&"throttle": return Rect2(w - m.y - 122, h - 238, 112, 208)
 		&"brake": return Rect2(w - m.y - 252, h - 208, 108, 178)
-		&"handbrake": return Rect2(w - m.y - 616, h - 132, 82, 102)
-		&"horn": return Rect2(w - m.y - 710, h - 112, 74, 82)
-		&"reverse": return Rect2(w - m.y - 514, h - 254, 184, 40)
+		&"handbrake": return Rect2(m.x + 414, h - 132, 82, 102)
+		&"horn": return Rect2(m.x + 330, h - 112, 74, 82)
+		&"reverse": return Rect2(w - m.y - 500, h - 254, 174, 40)
 		&"recenter": return Rect2(w - m.y - 104, 20, 44, 38)
 		&"pause": return Rect2(w - m.y - 48, 20, 44, 38)
 	return Rect2()
@@ -140,23 +140,24 @@ func _draw_minimap() -> void:
 	draw_circle(dot, 2.0, _text)
 
 func _draw_telemetry() -> void:
-	var center := Vector2(size.x * 0.5 - 30, size.y - 88)
-	var rect := Rect2(center.x - 142, center.y - 82, 284, 126)
+	var gear_rect := control_rect(&"gear")
+	var center := Vector2(gear_rect.position.x - 122, size.y - 88)
+	var rect := Rect2(center.x - 110, center.y - 78, 220, 122)
 	draw_style_box(_panel, rect)
 	var rpm_ratio := clampf(car.powertrain.rpm / 9000.0, 0, 1)
-	for i in range(26):
-		var lit := float(i) / 26.0 < rpm_ratio
+	for i in range(20):
+		var lit := float(i) / 20.0 < rpm_ratio
 		var color := _muted * Color(1,1,1,0.28)
 		if lit:
-			color = Color(0.35, 0.85, 0.65) if i < 17 else (_accent if i < 23 else Color(1, 0.12, 0.08))
-		draw_rect(Rect2(rect.position.x + 16 + i * 9.7, rect.position.y + 13, 7, 5), color)
-	_label(Vector2(center.x - 118, center.y + 15), "%03d" % int(car.speed_kmh), 76, _text)
-	_label(Vector2(center.x - 112, center.y + 36), "KM/H", 16, _muted)
-	draw_line(Vector2(center.x + 35, center.y - 42), Vector2(center.x + 35, center.y + 28), Color(1,1,1,0.12), 1)
-	_label(Vector2(center.x + 64, center.y + 14), car.powertrain.gear_label(), 72, _accent)
-	_label(Vector2(center.x + 58, center.y + 36), "MARCHA", 14, _muted)
-	_label(Vector2(center.x - 12, center.y - 28), "%d" % int(car.powertrain.rpm), 19, _muted)
-	_label(Vector2(center.x - 12, center.y - 12), "RPM", 12, _muted)
+			color = Color(0.35, 0.85, 0.65) if i < 13 else (_accent if i < 17 else Color(1, 0.12, 0.08))
+		draw_rect(Rect2(rect.position.x + 14 + i * 9.7, rect.position.y + 12, 7, 5), color)
+	_label(Vector2(center.x - 92, center.y + 14), "%03d" % int(car.speed_kmh), 64, _text)
+	_label(Vector2(center.x - 88, center.y + 34), "KM/H", 15, _muted)
+	draw_line(Vector2(center.x + 22, center.y - 40), Vector2(center.x + 22, center.y + 28), Color(1,1,1,0.12), 1)
+	_label(Vector2(center.x + 46, center.y + 12), car.powertrain.gear_label(), 62, _accent)
+	_label(Vector2(center.x + 42, center.y + 34), "MARCHA", 13, _muted)
+	_label(Vector2(center.x - 10, center.y - 26), "%d" % int(car.powertrain.rpm), 17, _muted)
+	_label(Vector2(center.x - 10, center.y - 11), "RPM", 11, _muted)
 
 func _draw_steering() -> void:
 	var rect := control_rect(&"steer")
