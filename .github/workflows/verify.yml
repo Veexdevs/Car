@@ -33,7 +33,7 @@ jobs:
         timeout-minutes: 3
         run: |
           set -o pipefail
-          ./Godot_v4.4.1-stable_linux.x86_64 --headless --path . --audio-driver Dummy --script Tests/run_tests.gd 2>&1 | tee docs/verification/test_log.txt
+          ./Godot_v4.4.1-stable_linux.x86_64 --headless --path . --audio-driver Dummy --script Tests/run_tests.gd 2>&1 | tee /tmp/godot_tests.log; status=${PIPESTATUS[0]}; tail -n 400 /tmp/godot_tests.log > docs/verification/test_log.txt; exit $status
       - name: Capture cockpit and pilot body
         timeout-minutes: 3
         run: xvfb-run -a -s "-screen 0 1280x720x24" ./Godot_v4.4.1-stable_linux.x86_64 --path . --rendering-method gl_compatibility --audio-driver Dummy --script Tests/capture_verification.gd
