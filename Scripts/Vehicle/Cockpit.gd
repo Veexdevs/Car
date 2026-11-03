@@ -68,7 +68,7 @@ func _build_shifter() -> void:
 	var cap := Geo.label(gear_pivot, "ShiftPattern", "1 3 5 R\n2 4 6", Vector3(0, 0.203, 0), 0.00032, Color(0.9, 0.9, 0.87))
 	cap.rotation.x = -PI / 2
 	for i in range(6):
-		var x := [-0.048, -0.048, -0.016, -0.016, 0.016, 0.016][i]
+		var x: float = [-0.048, -0.048, -0.016, -0.016, 0.016, 0.016][i]
 		var z := -0.075 if i % 2 == 0 else 0.075
 		Geo.label(self, "GateNumber" + str(i + 1), str(i + 1), GEAR_BASE + Vector3(x, 0.025, z), 0.00035, Color(0.8, 0.82, 0.8)).rotation.x = -PI / 2
 

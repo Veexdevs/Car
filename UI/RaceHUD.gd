@@ -166,7 +166,7 @@ func _draw_steering() -> void:
 	draw_arc(center, 58, 0, TAU, 64, Color(0.7, 0.77, 0.77, 0.35), 3.0, true)
 	draw_arc(center, 48, 0, TAU, 64, Color(0.7, 0.77, 0.77, 0.12), 1.0, true)
 	for base in [0.0, TAU/3.0, TAU*2.0/3.0]:
-		var a := base + angle
+		var a: float = base + angle
 		draw_line(center + Vector2(cos(a), sin(a))*18, center + Vector2(cos(a), sin(a))*54, _text if not router.has_role("steer") else _accent, 3.0, true)
 	draw_circle(center, 16, Color(0.05, 0.07, 0.08, 0.9))
 	_center_text(Rect2(rect.position.x, rect.end.y - 28, rect.size.x, 22), "DIREÇÃO  ·  ARRASTE", 16, _muted)
@@ -200,7 +200,7 @@ func _draw_shifter() -> void:
 	var labels_top := ["1", "3", "5", "R"]
 	var labels_bottom := ["2", "4", "6", ""]
 	for i in range(4):
-		var x := rect.position.x + rect.size.x*xs[i]
+		var x: float = rect.position.x + rect.size.x*xs[i]
 		_center_text(Rect2(x-14, top-22, 28, 22), labels_top[i], 21, _text)
 		_center_text(Rect2(x-14, bottom+2, 28, 22), labels_bottom[i], 21, _text)
 	var gear := car.powertrain.gear

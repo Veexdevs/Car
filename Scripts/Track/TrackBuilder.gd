@@ -44,7 +44,7 @@ func _build_curve() -> void:
 		if i > 0:
 			length_m += points[i].distance_to(points[i - 1])
 		cumulative.append(length_m)
-		map_bounds = map_bounds.expand(points[i])
+		map_bounds = map_bounds.expand(Vector2(points[i].x, points[i].z))
 	length_m += points[-1].distance_to(points[0])
 	map_bounds = map_bounds.grow(20)
 
@@ -90,7 +90,7 @@ func _build_terrain() -> void:
 	var hill_mat := _flat_material(Color(0.28, 0.34, 0.29))
 	for i in range(18):
 		var angle := float(i) / 18.0 * TAU
-		var pos := Vector3(40 + cos(angle) * 610, -22, -50 + sin(angle) * 610)
+		var pos: Vector3 = Vector3(40 + cos(angle) * 610, -22, -50 + sin(angle) * 610)
 		var hill := Geo.sphere(self, "DistantHill", pos, Vector3(randf_range(95, 170), randf_range(45, 95), randf_range(95, 170)), hill_mat)
 		hill.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 
@@ -115,15 +115,15 @@ func _build_road() -> void:
 		_quad(runoff, p-r0*11.3+Vector3.DOWN*.015, q-r1*11.3+Vector3.DOWN*.015, q+r1*11.3+Vector3.DOWN*.015, p+r0*11.3+Vector3.DOWN*.015)
 		_quad(road, p-r0*HALF_WIDTH, q-r1*HALF_WIDTH, q+r1*HALF_WIDTH, p+r0*HALF_WIDTH)
 		for side in [-1.0, 1.0]:
-			var a := p + r0 * side * (HALF_WIDTH - 0.18) + Vector3.UP * 0.012
-			var b := q + r1 * side * (HALF_WIDTH - 0.18) + Vector3.UP * 0.012
-			var c := q + r1 * side * (HALF_WIDTH + 0.02) + Vector3.UP * 0.012
-			var d := p + r0 * side * (HALF_WIDTH + 0.02) + Vector3.UP * 0.012
+			var a: Vector3 = p + r0 * side * (HALF_WIDTH - 0.18) + Vector3.UP * 0.012
+			var b: Vector3 = q + r1 * side * (HALF_WIDTH - 0.18) + Vector3.UP * 0.012
+			var c: Vector3 = q + r1 * side * (HALF_WIDTH + 0.02) + Vector3.UP * 0.012
+			var d: Vector3 = p + r0 * side * (HALF_WIDTH + 0.02) + Vector3.UP * 0.012
 			_quad(edge, a, b, c, d)
-			var ca := p + r0 * side * HALF_WIDTH + Vector3.UP * 0.018
-			var cb := q + r1 * side * HALF_WIDTH + Vector3.UP * 0.018
-			var cc := q + r1 * side * (HALF_WIDTH + 0.85) + Vector3.UP * 0.045
-			var cd := p + r0 * side * (HALF_WIDTH + 0.85) + Vector3.UP * 0.045
+			var ca: Vector3 = p + r0 * side * HALF_WIDTH + Vector3.UP * 0.018
+			var cb: Vector3 = q + r1 * side * HALF_WIDTH + Vector3.UP * 0.018
+			var cc: Vector3 = q + r1 * side * (HALF_WIDTH + 0.85) + Vector3.UP * 0.045
+			var cd: Vector3 = p + r0 * side * (HALF_WIDTH + 0.85) + Vector3.UP * 0.045
 			_quad(curb_red if i % 2 == 0 else curb_white, ca, cb, cc, cd)
 	_commit(runoff, self, "Runoff", _flat_material(Color(0.16, 0.17, 0.17)), true)
 	_commit(road, self, "Asphalt", Geo.material("res://Assets/Materials/asphalt.tres"), true)
@@ -140,11 +140,11 @@ func _build_start_grid() -> void:
 	var dark := _flat_material(Color(0.035, 0.04, 0.045))
 	for row in range(2):
 		for col in range(14):
-			var pos := origin + forward * (row * 0.5) + right * (col - 6.5)
+			var pos: Vector3 = origin + forward * (row * 0.5) + right * (col - 6.5)
 			var tile := Geo.box(self, "StartTile", pos + Vector3.UP * 0.018, Vector3(1.0, 0.008, 0.5), white if (row + col) % 2 == 0 else dark)
 			tile.basis = Basis.looking_at(forward, Vector3.UP)
 	for i in range(8):
-		var pos := origin - forward * (8.0 + i * 7.0) + right * (-3.2 if i % 2 == 0 else 3.2)
+		var pos: Vector3 = origin - forward * (8.0 + i * 7.0) + right * (-3.2 if i % 2 == 0 else 3.2)
 		var slot := Geo.box(self, "GridSlot", pos + Vector3.UP * 0.015, Vector3(2.3, 0.008, 0.12), white)
 		slot.basis = Basis.looking_at(forward, Vector3.UP)
 	var gantry := Node3D.new()
@@ -184,10 +184,10 @@ func _build_barriers() -> void:
 		for side in [-1.0, 1.0]:
 			var r0 := tangents[i].cross(Vector3.UP)
 			var r1 := tangents[j].cross(Vector3.UP)
-			var a := points[i] + r0 * side * 11.6
-			var b := points[j] + r1 * side * 11.6
+			var a: Vector3 = points[i] + r0 * side * 11.6
+			var b: Vector3 = points[j] + r1 * side * 11.6
 			_quad(rail, a + Vector3.UP*.42, b + Vector3.UP*.42, b + Vector3.UP*.86, a + Vector3.UP*.86)
-			var mid := (a + b) * 0.5
+			var mid: Vector3 = (a + b) * 0.5
 			var shape := CollisionShape3D.new()
 			var box := BoxShape3D.new()
 			box.size = Vector3(0.25, 0.95, a.distance_to(b) + 0.15)
@@ -272,7 +272,7 @@ func _build_vegetation() -> void:
 	var attempts := 0
 	while placed < count and attempts < 4000:
 		attempts += 1
-		var pos := Vector3(rng.randf_range(-330, 420), 0, rng.randf_range(-430, 320))
+		var pos: Vector3 = Vector3(rng.randf_range(-330, 420), 0, rng.randf_range(-430, 320))
 		if nearest(pos).distance < 18:
 			continue
 		var scale := rng.randf_range(2.5, 5.5)
@@ -295,7 +295,7 @@ func _build_distance_boards() -> void:
 		var at := point_at(fraction)
 		var right := tangent_at(fraction).cross(Vector3.UP)
 		for side in [-1.0, 1.0]:
-			var pos := at + right * side * 9.3
+			var pos: Vector3 = at + right * side * 9.3
 			var board := Geo.box(self, "BrakeBoard", pos + Vector3.UP * 1.1, Vector3(1.1, 0.7, 0.08), _flat_material(Color(0.9, 0.88, 0.8)))
 			board.basis = Basis.looking_at(tangent_at(fraction), Vector3.UP)
 			var label := Geo.label(self, "Distance", "100", pos + Vector3.UP * 1.1 - tangent_at(fraction)*0.06, 0.006, Color(0.08, 0.1, 0.11))
@@ -313,8 +313,8 @@ func nearest(pos: Vector3, hint := -1) -> Dictionary:
 		end = hint + 15
 	for k in range(start, end):
 		var i := (k % n + n) % n
-		var a := points[i]
-		var b := points[(i + 1) % n]
+		var a: Vector3 = points[i]
+		var b: Vector3 = points[(i + 1) % n]
 		var ab := b - a
 		ab.y = 0
 		var ap := pos - a

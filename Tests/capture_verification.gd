@@ -3,7 +3,7 @@ extends SceneTree
 func _initialize() -> void:
 	call_deferred("_run")
 func _run() -> void:
-	var main := load("res://Scenes/Main.tscn").instantiate()
+	var main = load("res://Scenes/Main.tscn").instantiate()
 	root.add_child(main)
 	main.apply_quality(1)
 	for i in range(90):

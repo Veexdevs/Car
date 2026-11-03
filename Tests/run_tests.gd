@@ -1,7 +1,7 @@
 extends SceneTree
 ## Run: godot --headless --path . --script Tests/run_tests.gd
 var results: Array[Dictionary] = []
-var main: Node3D
+var main
 
 func _initialize() -> void:
 	call_deferred("_run")
