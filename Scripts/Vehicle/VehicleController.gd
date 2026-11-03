@@ -158,7 +158,7 @@ func _physics_process(delta: float) -> void:
 	rear_slip = 0.0
 	for i in range(wheels.size()):
 		var wheel := wheels[i]
-		if wheel.is_colliding():
+		if wheel.is_in_contact():
 			grounded_wheels += 1
 		var rear := i >= 2
 		var grip := 3.15 if not rear else 3.0

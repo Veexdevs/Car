@@ -191,6 +191,8 @@ func _process(delta: float) -> void:
 		update_pose(delta)
 
 func update_pose(delta: float) -> void:
+	if not is_instance_valid(camera) or not is_instance_valid(car.cockpit.wheel_pivot):
+		return
 	time += delta
 	var speed_factor := clampf(car.speed_kmh / 120.0, 0, 1)
 	var lateral := clampf(car.lateral_g * 0.055 + car.steer_normalized * speed_factor * 0.035, -0.065, 0.065)

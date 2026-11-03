@@ -25,7 +25,7 @@ const HANDBRAKE_BASE := Vector3(0.10, 0.46, 0.38)
 
 func setup(vehicle: VehicleController) -> void:
 	car = vehicle
-	wheel_pivot = car.model.find_child("steering_wheel", true, false) as Node3D
+	wheel_pivot = _resolve_wheel_pivot()
 	if wheel_pivot:
 		wheel_base_rotation = wheel_pivot.quaternion
 		var area := Area3D.new()
@@ -49,6 +49,31 @@ func setup(vehicle: VehicleController) -> void:
 	add_child(mirrors)
 	mirrors.setup(car)
 	car.shifted.connect(func(_gear): shift_age = 0.0)
+
+func _resolve_wheel_pivot() -> Node3D:
+	var exact := car.model.find_child("steering_wheel", true, false) as Node3D
+	if exact:
+		return exact
+	for node in car.model.find_children("*", "Node3D", true, false):
+		if String(node.name).to_lower().contains("steering_wheel"):
+			return node as Node3D
+	var pivot := Node3D.new()
+	pivot.name = "SteeringPivot"
+	pivot.position = WHEEL_CENTER
+	pivot.quaternion = Quaternion(-0.819152057, 0, 0, 0.57357645).normalized()
+	car.model.add_child(pivot)
+	var meshes: Array[Node3D] = []
+	for node in car.model.find_children("*", "MeshInstance3D", true, false):
+		if String(node.name).to_lower().contains("steering"):
+			meshes.append(node)
+	for mesh in meshes:
+		mesh.reparent(pivot, true)
+	if meshes.is_empty():
+		var rim := TorusMesh.new()
+		rim.inner_radius = 0.155
+		rim.outer_radius = 0.185
+		Geo.mesh(pivot, "SteeringRim", rim, Vector3.ZERO, Geo.material("res://Assets/Materials/alcantara.tres"))
+	return pivot
 
 func _build_shifter() -> void:
 	var metal := Geo.material("res://Assets/Materials/titanium.tres")
