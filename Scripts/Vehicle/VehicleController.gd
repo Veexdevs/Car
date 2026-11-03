@@ -171,7 +171,8 @@ func _physics_process(delta: float) -> void:
 		wheel.brake = service_brake * (66.0 if not rear else 42.0)
 		if rear:
 			wheel.brake += parking_brake * 95.0
-			wheel.engine_force = drive_force * 0.5
+			# Godot raycast wheels apply positive engine_force along +Z; this cockpit faces -Z.
+			wheel.engine_force = -drive_force * 0.5
 			rear_slip = maxf(rear_slip, 1.0 - wheel.get_skidinfo())
 		else:
 			wheel.engine_force = 0.0
