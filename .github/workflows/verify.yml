@@ -42,6 +42,11 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin arena/0c845879-car
+          if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/arena/0c845879-car)" ]; then
+            echo "Skipping evidence push for stale run."
+            exit 0
+          fi
           git add docs/verification
           if ! git diff --cached --quiet; then
             git commit -m "test: Godot 4.4.1 verification evidence [skip ci]"
