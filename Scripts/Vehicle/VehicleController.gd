@@ -172,10 +172,7 @@ func _physics_process(delta: float) -> void:
 		wheel.brake = service_brake * (66.0 if not rear else 42.0)
 		if rear:
 			wheel.brake += parking_brake * 95.0
-			wheel.engine_force = 0.0
 			rear_slip = maxf(rear_slip, 1.0 - wheel.get_skidinfo())
-		else:
-			wheel.engine_force = 0.0
 		if absf(signed_speed) < 0.2 and service_brake < 0.05 and accelerator < 0.05:
 			wheel.brake = 12.0
 	slip_amount = lerpf(slip_amount, clampf(rear_slip + absf(local_velocity.x) / maxf(speed, 3.0), 0, 1), 0.16)
