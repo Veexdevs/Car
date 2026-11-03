@@ -1,0 +1,55 @@
+; SERRA RS — Godot 4.4+ / Android landscape
+; Native Godot project. No web runtime, plugins, GDExtension or network services.
+config_version=5
+
+[application]
+config/name="SERRA RS — Cockpit"
+config/description="Simulador experimental de condução em primeira pessoa. Godot 4 Mobile."
+config/version="0.1.0"
+run/main_scene="res://Scenes/Main.tscn"
+config/features=PackedStringArray("4.4", "Mobile")
+config/icon="res://icon.svg"
+
+[display]
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/handheld/orientation=0
+
+[rendering]
+renderer/rendering_method="mobile"
+renderer/rendering_method.mobile="mobile"
+textures/default_filters/use_nearest_mipmap_filter=false
+anti_aliasing/quality/msaa_3d=1
+anti_aliasing/quality/screen_space_aa=1
+textures/vram_compression/import_etc2_astc=true
+lights_and_shadows/directional_shadow/size=2048
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=1
+environment/defaults/default_clear_color=Color(0.48, 0.58, 0.65, 1)
+limits/opengl/max_renderable_lights=16
+
+[input_devices]
+pointing/emulate_touch_from_mouse=true
+pointing/emulate_mouse_from_touch=false
+
+[physics]
+common/physics_ticks_per_second=60
+common/max_physics_steps_per_frame=8
+3d/default_gravity=9.81
+3d/physics_engine="GodotPhysics3D"
+
+[audio]
+driver/enable_input=false
+general/3d_panning_strength=0.65
+
+[layer_names]
+3d_physics/layer_1="Track"
+3d_physics/layer_2="Vehicle"
+3d_physics/layer_3="CockpitTouch"
+
+[debug]
+gdscript/warnings/untyped_declaration=0
+gdscript/warnings/inferred_declaration=0

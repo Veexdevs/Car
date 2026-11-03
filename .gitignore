@@ -1,0 +1,9 @@
+.godot/
+*.tmp
+*.apk
+*.aab
+*.keystore
+!debug.keystore
+.DS_Store
+__pycache__/
+node_modules/
