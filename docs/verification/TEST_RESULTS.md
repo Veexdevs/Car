@@ -1,6 +1,6 @@
 # Verificação automática — Godot 4.4.1-stable (official)
 
-**30/32 verificações aprovadas.**
+**31/33 verificações aprovadas.**
 
 Executado no player Godot real, em Linux headless. Não substitui teste em aparelho Android físico.
 
@@ -23,6 +23,7 @@ Executado no player Godot real, em Linux headless. Não substitui teste em apare
 | Focus loss clears every held control | PASS |
 | H-gate drag engages first | PASS |
 | Vehicle accelerates under real physics | FAIL |
+| Rear traction wheels receive engine force | PASS |
 | Suspension remains in contact | PASS |
 | Right steering yaws the chassis right | PASS |
 | Service brake reduces speed | FAIL |

@@ -1,7 +1,7 @@
 {
 	"engine": "4.4.1-stable (official)",
 	"failed": 2,
-	"passed": 30,
+	"passed": 31,
 	"tests": [
 		{
 			"detail": "",
@@ -84,9 +84,14 @@
 			"pass": true
 		},
 		{
-			"detail": "0.1 km/h gear=1 rpm=8748 signed=0.01 force=-5680.7",
+			"detail": "{\"body_force\":-5680.62744140625,\"clutch\":1.0,\"freeze\":false,\"gear\":1,\"kmh\":0.553357046842575,\"pos\":\"(10.02385, -0.117975, -1.431062)\",\"rpm\":8748.26335239278,\"signed\":0.153710290789604,\"sleeping\":false,\"throttle\":1.0,\"vel\":\"(0.030093, 0.009648, -0.081136)\",\"wheels\":[{\"brake\":0.0,\"contact\":true,\"force\":0.0,\"normal\":\"(0.0, 1.0, 0.0)\",\"rpm\":-4.56209278106689,\"skid\":1.0,\"traction\":false},{\"brake\":0.0,\"contact\":true,\"force\":0.0,\"normal\":\"(0.0, 1.0, 0.0)\",\"rpm\":-4.20286464691162,\"skid\":1.0,\"traction\":false},{\"brake\":0.0,\"contact\":true,\"force\":-5680.62744140625,\"normal\":\"(0.0, 1.0, 0.0)\",\"rpm\":-4.56417226791382,\"skid\":1.0,\"traction\":true},{\"brake\":0.0,\"contact\":true,\"force\":-5680.62744140625,\"normal\":\"(0.0, 1.0, 0.0)\",\"rpm\":-4.21349620819092,\"skid\":1.0,\"traction\":true}]}",
 			"name": "Vehicle accelerates under real physics",
 			"pass": false
+		},
+		{
+			"detail": "[-5680.62744140625, -5680.62744140625]",
+			"name": "Rear traction wheels receive engine force",
+			"pass": true
 		},
 		{
 			"detail": "4",
