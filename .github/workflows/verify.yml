@@ -25,10 +25,16 @@ jobs:
           unzip -o godot.zip
           chmod +x Godot_v4.4.1-stable_linux.x86_64
       - name: Import all project resources
-        run: ./Godot_v4.4.1-stable_linux.x86_64 --headless --path . --editor --import --quit
+        run: |
+          set -o pipefail
+          ./Godot_v4.4.1-stable_linux.x86_64 --headless --path . --editor --import --quit 2>&1 | tee docs/verification/import_log.txt
       - name: Run gameplay and system tests
-        run: ./Godot_v4.4.1-stable_linux.x86_64 --headless --path . --audio-driver Dummy --script Tests/run_tests.gd
+        timeout-minutes: 3
+        run: |
+          set -o pipefail
+          ./Godot_v4.4.1-stable_linux.x86_64 --headless --path . --audio-driver Dummy --script Tests/run_tests.gd 2>&1 | tee docs/verification/test_log.txt
       - name: Capture cockpit and pilot body
+        timeout-minutes: 3
         run: xvfb-run -a -s "-screen 0 1280x720x24" ./Godot_v4.4.1-stable_linux.x86_64 --path . --rendering-method gl_compatibility --audio-driver Dummy --script Tests/capture_verification.gd
       - name: Save verification evidence to this branch
         if: always()

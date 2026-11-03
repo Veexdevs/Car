@@ -5,6 +5,7 @@ var main: Node3D
 
 func _initialize() -> void:
 	call_deferred("_run")
+	create_timer(100.0).timeout.connect(func(): _write_report(); quit(1))
 
 func check(name: String, condition: bool, detail := "") -> void:
 	results.append({"name": name, "pass": condition, "detail": detail})
@@ -15,6 +16,11 @@ func _run() -> void:
 	root.add_child(main)
 	await process_frame
 	await physics_frame
+	if not is_instance_valid(main.car):
+		check("Main scene instantiated", false, "vehicle missing")
+		_write_report()
+		quit(1)
+		return
 	var car: VehicleController = main.car
 	var input: DrivingInput = main.driving
 	var router: InputRouter = main.router

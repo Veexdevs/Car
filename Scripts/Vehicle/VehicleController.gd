@@ -25,6 +25,7 @@ var _previous_velocity := Vector3.ZERO
 var _impact_cooldown := 0.0
 var _local_previous_velocity := Vector3.ZERO
 var _wheel_meshes: Array[Node3D] = []
+var _tire_smoke: Array[CPUParticles3D] = []
 @onready var model: Node3D = $Model
 @onready var driver: RobotDriver = $Driver
 @onready var cockpit: Cockpit = $Cockpit
@@ -41,6 +42,7 @@ func _ready() -> void:
 	for node_name in ["FL", "FR", "RL", "RR"]:
 		wheels.append(get_node(node_name))
 	_attach_visuals()
+	_build_tire_smoke()
 	if not is_instance_valid(driving):
 		driving = DrivingInput.new()
 		add_child(driving)
@@ -86,6 +88,39 @@ func _attach_visuals() -> void:
 			# VehicleWheel3D's synchronized transform is the wheel center, with X as axle.
 			visual.transform = Transform3D(Basis(Vector3.RIGHT, -PI / 2.0), Vector3.ZERO)
 			_wheel_meshes.append(visual)
+
+func _build_tire_smoke() -> void:
+	var mat := StandardMaterial3D.new()
+	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mat.billboard_mode = BaseMaterial3D.BILLBOARD_ENABLED
+	mat.vertex_color_use_as_albedo = true
+	mat.albedo_texture = load("res://Assets/Textures/tire_smoke.png")
+	var ramp := Gradient.new()
+	ramp.set_color(0, Color(0.72, 0.73, 0.72, 0.28))
+	ramp.set_color(1, Color(0.65, 0.66, 0.65, 0.0))
+	for side in [-1.0, 1.0]:
+		var particles := CPUParticles3D.new()
+		particles.name = "RearTireSmoke"
+		particles.position = Vector3(side * 0.82, 0.12, 1.50)
+		particles.amount = 18
+		particles.lifetime = 0.9
+		particles.local_coords = false
+		particles.emitting = false
+		particles.direction = Vector3(0, 1, 0.4)
+		particles.spread = 28
+		particles.gravity = Vector3(0, 0.5, 0)
+		particles.initial_velocity_min = 0.4
+		particles.initial_velocity_max = 1.3
+		particles.scale_amount_min = 0.35
+		particles.scale_amount_max = 0.85
+		particles.color_ramp = ramp
+		var quad := QuadMesh.new()
+		quad.size = Vector2.ONE
+		particles.mesh = quad
+		particles.material_override = mat
+		add_child(particles)
+		_tire_smoke.append(particles)
 
 func _material(path: String) -> Material:
 	return load(path) as Material
@@ -143,6 +178,8 @@ func _physics_process(delta: float) -> void:
 		if absf(signed_speed) < 0.2 and service_brake < 0.05 and accelerator < 0.05:
 			wheel.brake = 12.0
 	slip_amount = lerpf(slip_amount, clampf(rear_slip + absf(local_velocity.x) / maxf(speed, 3.0), 0, 1), 0.16)
+	for smoke in _tire_smoke:
+		smoke.emitting = slip_amount > 0.24 and speed > 3.0
 	constant_force = Vector3.ZERO
 	if grounded_wheels > 0:
 		var planar := Vector3(linear_velocity.x, 0, linear_velocity.z)
