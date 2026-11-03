@@ -26,7 +26,7 @@ update_scripts_classes: begin: Registering global classes... steps: 16
 	update_scripts_classes: step 14: 
 	update_scripts_classes: step 15: RaceHUD
 update_scripts_classes: end
-_update_scan_actions: begin: Scanning actions... steps: 22
+_update_scan_actions: begin: Scanning actions... steps: 24
 	_update_scan_actions: step 0: engine.ogg
 	_update_scan_actions: step 1: horn.wav
 	_update_scan_actions: step 2: impact.ogg
@@ -47,10 +47,12 @@ _update_scan_actions: begin: Scanning actions... steps: 22
 	_update_scan_actions: step 17: tire_smoke.png
 	_update_scan_actions: step 18: titanium_albedo.png
 	_update_scan_actions: step 19: titanium_normal.png
-	_update_scan_actions: step 20: BarlowCondensed-SemiBold.ttf
-	_update_scan_actions: step 21: icon.svg
+	_update_scan_actions: step 20: cockpit.png
+	_update_scan_actions: step 21: pilot_body.png
+	_update_scan_actions: step 22: BarlowCondensed-SemiBold.ttf
+	_update_scan_actions: step 23: icon.svg
 _update_scan_actions: end
-reimport: begin: (Re)Importing Assets steps: 22
+reimport: begin: (Re)Importing Assets steps: 24
 	reimport: step 0: Preparing files to reimport...
 	reimport: step 1: Preparing files to reimport...
 	reimport: step 2: Preparing files to reimport...
@@ -73,6 +75,8 @@ reimport: begin: (Re)Importing Assets steps: 22
 	reimport: step 19: Preparing files to reimport...
 	reimport: step 20: Preparing files to reimport...
 	reimport: step 21: Preparing files to reimport...
+	reimport: step 22: Preparing files to reimport...
+	reimport: step 23: Preparing files to reimport...
 	reimport: step 0: Executing pre-reimport operations...
 	reimport: step 0: BarlowCondensed-SemiBold.ttf
 	reimport: step 1: BarlowCondensed-SemiBold.ttf
@@ -83,19 +87,20 @@ reimport: begin: (Re)Importing Assets steps: 22
 	reimport: step 6: impact.ogg
 	reimport: step 7: skid.ogg
 	reimport: step 8: icon.svg
-	reimport: step 9: titanium_normal.png
-	reimport: step 10: titanium_albedo.png
-	reimport: step 11: tire_smoke.png
-	reimport: step 12: sport_ao.png
-	reimport: step 13: leather_normal.png
-	reimport: step 14: leather_albedo.png
-	reimport: step 15: carbon_normal.png
-	reimport: step 16: carbon_albedo.png
-	reimport: step 17: BarlowCondensed-SemiBold.ttf
-	reimport: step 18: engine.ogg
-	reimport: step 19: impact.ogg
-	reimport: step 20: skid.ogg
-	reimport: step 21: sport_458.glb
+	reimport: step 9: pilot_body.png
+	reimport: step 10: cockpit.png
+	reimport: step 11: titanium_normal.png
+	reimport: step 12: titanium_albedo.png
+	reimport: step 13: tire_smoke.png
+	reimport: step 14: sport_ao.png
+	reimport: step 15: leather_normal.png
+	reimport: step 16: leather_albedo.png
+	reimport: step 17: carbon_normal.png
+	reimport: step 18: carbon_albedo.png
+	reimport: step 19: BarlowCondensed-SemiBold.ttf
+	reimport: step 21: impact.ogg
+	reimport: step 22: skid.ogg
+	reimport: step 23: sport_458.glb
 import: begin: Import Scene steps: 104
 	import: step 0: Importing Scene...
 	import: step 2: Running Custom Script...
@@ -103,7 +108,7 @@ import: begin: Import Scene steps: 104
 ERROR: Parameter "t" is null.
    at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
 import: end
-	reimport: step 22: Finalizing Asset Import...
+	reimport: step 24: Finalizing Asset Import...
 reimport: end
 update_script_paths_documentation: begin: Updating scripts documentation steps: 16
 	update_script_paths_documentation: step 0: MotionSpring.gd
@@ -123,7 +128,7 @@ update_script_paths_documentation: begin: Updating scripts documentation steps: 
 	update_script_paths_documentation: step 14: run_tests.gd
 	update_script_paths_documentation: step 15: RaceHUD.gd
 update_script_paths_documentation: end
-reimport: begin: (Re)Importing Assets steps: 22
+reimport: begin: (Re)Importing Assets steps: 24
 	reimport: step 0: Executing post-reimport operations...
 reimport: end
 loading_editor_layout: begin: Loading editor steps: 5
