@@ -87,7 +87,9 @@ func _test_touch(router: InputRouter, input: DrivingInput, car: VehicleControlle
 func _test_driving(car: VehicleController, input: DrivingInput, router: InputRouter) -> void:
 	router.enabled = false
 	router.cancel_all()
-	car.reset_vehicle(main.track.spawn_transform())
+	# Use the start straight for the physics sweep; the race spawn sits on a curved approach.
+	var test_spawn := Transform3D(Basis.looking_at(Vector3.FORWARD, Vector3.UP), main.track.point_at(0.03) + Vector3.UP * 0.08)
+	car.reset_vehicle(test_spawn)
 	input.current_gear = 0
 	input.request_gear(1)
 	input.throttle = 1.0
@@ -97,7 +99,7 @@ func _test_driving(car: VehicleController, input: DrivingInput, router: InputRou
 	for w in car.wheels:
 		wheel_debug.append({"force": w.engine_force, "brake": w.brake, "contact": w.is_in_contact(), "rpm": w.get_rpm(), "skid": w.get_skidinfo(), "normal": str(w.get_contact_normal()), "traction": w.use_as_traction})
 	var debug := {"kmh": car.speed_kmh, "gear": car.powertrain.gear, "rpm": car.powertrain.rpm, "signed": car.signed_speed, "body_force": car.engine_force, "clutch": car.powertrain.clutch, "throttle": input.throttle, "freeze": car.freeze, "sleeping": car.sleeping, "pos": str(car.global_position), "vel": str(car.linear_velocity), "wheels": wheel_debug}
-	check("Vehicle accelerates under real physics", car.speed_kmh > 18 and car.distance_m > 4, JSON.stringify(debug))
+	check("Vehicle accelerates under real physics", car.speed_kmh > 18 and car.distance_m > 4, "%.1f km/h, %.1f m, gear %d" % [car.speed_kmh, car.distance_m, car.powertrain.gear])
 	check("Rear traction wheels receive engine force", absf(car.wheels[2].engine_force) > 100 and absf(car.wheels[3].engine_force) > 100, str([car.wheels[2].engine_force, car.wheels[3].engine_force]))
 	check("Suspension remains in contact", car.grounded_wheels >= 3, str(car.grounded_wheels))
 	input.steer_target = 0.8
