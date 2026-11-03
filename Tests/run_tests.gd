@@ -93,7 +93,7 @@ func _test_driving(car: VehicleController, input: DrivingInput, router: InputRou
 	input.throttle = 1.0
 	for i in range(210):
 		await physics_frame
-	check("Vehicle accelerates under real physics", car.speed_kmh > 18 and car.distance_m > 4, "%.1f km/h" % car.speed_kmh)
+	check("Vehicle accelerates under real physics", car.speed_kmh > 18 and car.distance_m > 4, "%.1f km/h gear=%d rpm=%d signed=%.2f force=%.1f" % [car.speed_kmh, car.powertrain.gear, int(car.powertrain.rpm), car.signed_speed, car.engine_force])
 	check("Suspension remains in contact", car.grounded_wheels >= 3, str(car.grounded_wheels))
 	input.steer_target = 0.8
 	for i in range(45):

@@ -150,6 +150,7 @@ func _physics_process(delta: float) -> void:
 	var service_brake := driving.brake if driving.enabled else 1.0
 	var parking_brake := driving.handbrake if driving.enabled else 0.0
 	var drive_force := powertrain.step(delta, accelerator, signed_speed)
+	engine_force = -drive_force * 0.5
 	if service_brake > 0.02 or parking_brake > 0.05 or not driving.enabled:
 		drive_force = 0.0
 	elif powertrain.engine_brake_force > 0:
@@ -171,8 +172,7 @@ func _physics_process(delta: float) -> void:
 		wheel.brake = service_brake * (66.0 if not rear else 42.0)
 		if rear:
 			wheel.brake += parking_brake * 95.0
-			# Godot raycast wheels apply positive engine_force along +Z; this cockpit faces -Z.
-			wheel.engine_force = -drive_force * 0.5
+			wheel.engine_force = 0.0
 			rear_slip = maxf(rear_slip, 1.0 - wheel.get_skidinfo())
 		else:
 			wheel.engine_force = 0.0
