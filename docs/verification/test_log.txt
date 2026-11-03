@@ -1,0 +1,29 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+SCRIPT ERROR: Parse Error: Cannot infer the type of "x" variable because the value doesn't have a set type.
+          at: GDScript::reload (res://Scripts/Vehicle/Cockpit.gd:71)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://Scripts/Driver/RobotDriver.gd:0)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "x" variable because the value doesn't have a set type.
+          at: GDScript::reload (res://Scripts/Vehicle/Cockpit.gd:71)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://Scripts/Vehicle/VehicleController.gd:0)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "x" variable because the value doesn't have a set type.
+          at: GDScript::reload (res://Scripts/Vehicle/Cockpit.gd:71)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://Tests/run_tests.gd:0)
+ERROR: Failed to load script "res://Tests/run_tests.gd" with error "Compilation failed".
+   at: load (modules/gdscript/gdscript.cpp:3022)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "a" variable because the value doesn't have a set type.
+          at: GDScript::reload (res://UI/RaceHUD.gd:169)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "x" variable because the value doesn't have a set type.
+          at: GDScript::reload (res://UI/RaceHUD.gd:203)
+ERROR: Failed to load script "res://UI/RaceHUD.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript.cpp:3022)
+SCRIPT ERROR: Parse Error: Cannot find member "REFLECTED_SOURCE_SKY" in base "Environment".
+          at: GDScript::reload (res://Scripts/Core/Game.gd:75)
+ERROR: Failed to load script "res://Scripts/Core/Game.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript.cpp:3022)
+SCRIPT ERROR: Invalid access to property or key 'car' on a base object of type 'Node3D'.
+          at: _run (res://Tests/run_tests.gd:19)
+RESULT: 0 passed, 0 failed
