@@ -1,0 +1,5 @@
+[gd_resource type="StandardMaterial3D" format=3]
+[resource]
+resource_name = "Soft rubber"
+albedo_color = Color(0.022, 0.025, 0.027, 1)
+roughness = 0.92

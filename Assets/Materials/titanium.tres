@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3]
+[ext_resource type="Texture2D" path="res://Assets/Textures/titanium_albedo.png" id="1"]
+[ext_resource type="Texture2D" path="res://Assets/Textures/titanium_normal.png" id="2"]
+[resource]
+resource_name = "Brushed titanium"
+albedo_color = Color(0.58, 0.60, 0.63, 1)
+albedo_texture = ExtResource("1")
+metallic = 0.88
+roughness = 0.46
+normal_enabled = true
+normal_texture = ExtResource("2")
+normal_scale = 0.28
+uv1_scale = Vector3(2, 4, 2)

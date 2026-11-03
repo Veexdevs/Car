@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3]
+[resource]
+resource_name = "Graphite metallic paint"
+albedo_color = Color(0.19, 0.215, 0.225, 1)
+metallic = 0.82
+metallic_specular = 0.55
+roughness = 0.29
+clearcoat_enabled = true
+clearcoat = 0.7
+clearcoat_roughness = 0.18

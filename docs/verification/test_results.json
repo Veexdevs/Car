@@ -1,0 +1,172 @@
+{
+	"engine": "4.4.1-stable (official)",
+	"failed": 0,
+	"passed": 33,
+	"tests": [
+		{
+			"detail": "",
+			"name": "Main scene / vehicle / camera",
+			"pass": true
+		},
+		{
+			"detail": "",
+			"name": "Four suspension wheels",
+			"pass": true
+		},
+		{
+			"detail": "",
+			"name": "Track collision and closed spline",
+			"pass": true
+		},
+		{
+			"detail": "",
+			"name": "Track nearest-point query",
+			"pass": true
+		},
+		{
+			"detail": "",
+			"name": "Neutral revs without drive force",
+			"pass": true
+		},
+		{
+			"detail": "",
+			"name": "Reverse interlock requires stop + brake",
+			"pass": true
+		},
+		{
+			"detail": "",
+			"name": "First gear engages",
+			"pass": true
+		},
+		{
+			"detail": "",
+			"name": "Clutch lifts during shift",
+			"pass": true
+		},
+		{
+			"detail": "12948 N",
+			"name": "First gear produces forward traction",
+			"pass": true
+		},
+		{
+			"detail": "",
+			"name": "Reverse produces negative traction",
+			"pass": true
+		},
+		{
+			"detail": "",
+			"name": "Six forward ratios + reverse + neutral",
+			"pass": true
+		},
+		{
+			"detail": "",
+			"name": "Reset returns to neutral",
+			"pass": true
+		},
+		{
+			"detail": "",
+			"name": "Independent throttle + brake + steering fingers",
+			"pass": true
+		},
+		{
+			"detail": "",
+			"name": "Steering release does not release pedals",
+			"pass": true
+		},
+		{
+			"detail": "",
+			"name": "Focus loss clears every held control",
+			"pass": true
+		},
+		{
+			"detail": "",
+			"name": "H-gate drag engages first",
+			"pass": true
+		},
+		{
+			"detail": "71.8 km/h, 30.6 m, gear 1",
+			"name": "Vehicle accelerates under real physics",
+			"pass": true
+		},
+		{
+			"detail": "[-6413.97802734375, -6413.97802734375]",
+			"name": "Rear traction wheels receive engine force",
+			"pass": true
+		},
+		{
+			"detail": "4",
+			"name": "Suspension remains in contact",
+			"pass": true
+		},
+		{
+			"detail": "-2.642 rad/s",
+			"name": "Right steering yaws the chassis right",
+			"pass": true
+		},
+		{
+			"detail": "59.1 -> 11.1",
+			"name": "Service brake reduces speed",
+			"pass": true
+		},
+		{
+			"detail": "",
+			"name": "Handbrake loads rear wheels only",
+			"pass": true
+		},
+		{
+			"detail": "",
+			"name": "Reverse engages after stopping with brake",
+			"pass": true
+		},
+		{
+			"detail": "-2.71 m/s",
+			"name": "Reverse moves the vehicle backwards",
+			"pass": true
+		},
+		{
+			"detail": "",
+			"name": "Physical steering wheel follows input",
+			"pass": true
+		},
+		{
+			"detail": "",
+			"name": "Shift animation reaches away from wheel",
+			"pass": true
+		},
+		{
+			"detail": "",
+			"name": "Hand returns after shift",
+			"pass": true
+		},
+		{
+			"detail": "",
+			"name": "Horn has a hand action and audio player",
+			"pass": true
+		},
+		{
+			"detail": "",
+			"name": "Handbrake has a hand action",
+			"pass": true
+		},
+		{
+			"detail": "",
+			"name": "Pilot can look down at the body",
+			"pass": true
+		},
+		{
+			"detail": "",
+			"name": "Full body has individual finger chains",
+			"pass": true
+		},
+		{
+			"detail": "",
+			"name": "Pause freezes tree and releases controls",
+			"pass": true
+		},
+		{
+			"detail": "",
+			"name": "Resume restores input",
+			"pass": true
+		}
+	]
+}

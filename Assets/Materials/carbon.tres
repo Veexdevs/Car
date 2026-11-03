@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3]
+[ext_resource type="Texture2D" path="res://Assets/Textures/carbon_albedo.png" id="1"]
+[ext_resource type="Texture2D" path="res://Assets/Textures/carbon_normal.png" id="2"]
+[resource]
+resource_name = "Satin carbon twill"
+albedo_texture = ExtResource("1")
+metallic = 0.25
+roughness = 0.43
+normal_enabled = true
+normal_texture = ExtResource("2")
+normal_scale = 0.3
+uv1_scale = Vector3(8, 8, 8)
+clearcoat_enabled = true
+clearcoat = 0.25
+clearcoat_roughness = 0.4
