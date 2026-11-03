@@ -150,11 +150,14 @@ func _physics_process(delta: float) -> void:
 	var service_brake := driving.brake if driving.enabled else 1.0
 	var parking_brake := driving.handbrake if driving.enabled else 0.0
 	var drive_force := powertrain.step(delta, accelerator, signed_speed)
-	engine_force = -drive_force * 0.5
 	if service_brake > 0.02 or parking_brake > 0.05 or not driving.enabled:
 		drive_force = 0.0
 	elif powertrain.engine_brake_force > 0:
 		drive_force = -signf(signed_speed) * powertrain.engine_brake_force
+	# Apply after pedal arbitration so braking never leaves residual drive torque.
+	engine_force = -drive_force * 0.5
+	if absf(drive_force) > 1.0:
+		sleeping = false
 	grounded_wheels = 0
 	rear_slip = 0.0
 	for i in range(wheels.size()):
@@ -219,5 +222,6 @@ func reset_vehicle(at: Transform3D) -> void:
 	previous_velocity = Vector3.ZERO
 	_local_previous_velocity = Vector3.ZERO
 	freeze = false
+	sleeping = false
 	if is_instance_valid(cockpit):
 		cockpit.on_reset()
